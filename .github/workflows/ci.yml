@@ -11,6 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache node-modules
+      - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: use NodeJS
         uses: actions/setup-node@v3
         with:
@@ -20,9 +34,11 @@ jobs:
       - run: yarn test -- --coverage
         env:
           CI: true
+
       - name: Build project
         if: github.event_name == 'push'
         run: yarn build
+
       - name: Deploy to staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --domain afraid-insect.surge.sh
