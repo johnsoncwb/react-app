@@ -3,6 +3,8 @@ name: CI
 on:
   pull_request:
     branches: [develop]
+  push:
+    branches: [develop]
 
 jobs:
   build:
@@ -18,3 +20,12 @@ jobs:
       - run: yarn test -- --coverage
         env:
           CI: true
+      - name: Build project
+        if: github.event_name == 'push'
+        run: yarn build
+      - name: Deploy to staging
+        if: github.event_name == 'push'
+        run: npx surge --project ./build --domain afraid-insect.surge.sh
+        env:
+          SURGE_LOGIN: ${{secrets.SURGE_LOGIN}}
+          SURGE_TOKEN: ${{secrets.SURGE_TOKEN}}
