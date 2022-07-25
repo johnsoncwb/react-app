@@ -30,9 +30,19 @@ jobs:
       - run: yarn test -- --coverage
         env:
           CI: true
+      - name: Upload test coverage
+        uses: actions/upload-artifacts@v3
+        with:
+          name: code-coverage
+          path: coverage
       - name: Build project
         if: github.event_name == 'push'
         run: yarn build
+      - name: Upload build
+        uses: actions/upload-artifacts@v3
+        with:
+          name: build
+          path: build
       - name: Deploy to staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --domain afraid-insect.surge.sh
