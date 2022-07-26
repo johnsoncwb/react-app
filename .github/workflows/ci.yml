@@ -2,9 +2,9 @@ name: CI
 
 on:
   pull_request:
-    branches: [develop]
+    branches: [develop, main]
   push:
-    branches: [develop]
+    branches: [develop, main]
 
 jobs:
   build:
@@ -44,6 +44,11 @@ jobs:
         with:
           name: build
           path: build
+      - name: create a new release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Deploy to staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --domain afraid-insect.surge.sh
