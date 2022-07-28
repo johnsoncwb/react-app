@@ -1,0 +1,14 @@
+name: hello world
+author: Allan Johnson
+description: some description
+inputs:
+  who-to-greet:
+    description: "who-to-greet"
+    required: true
+    default: dear user :)
+outputs:
+  time:
+    description: "the greeting time"
+runs:
+  using: "node16"
+  main: "dist/index.js"
