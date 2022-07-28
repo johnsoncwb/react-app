@@ -13,4 +13,4 @@ jobs:
         with:
           who-to-greet: "Allan Johnson"
       - run: |
-        echo "Time: ${{steps.hello.outputs.time}}"
+          echo "Time: ${{steps.hello.outputs.time}}"
