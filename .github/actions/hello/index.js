@@ -7,6 +7,7 @@ try {
 
   const time = new Date();
   core.setOutput(JSON.stringify(time.toTimeString()));
+
   console.log(JSON.stringify(github, null, "\t"));
 } catch (error) {
   core.setFailed(error.message);
