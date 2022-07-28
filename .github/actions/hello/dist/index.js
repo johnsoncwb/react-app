@@ -12260,7 +12260,7 @@ try {
   console.log(`Hello ${name}`);
 
   const time = new Date();
-  _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setOutput(JSON.stringify(time.toTimeString()));
+  _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setOutput("time", JSON.stringify(time.toTimeString()));
 
   console.log(JSON.stringify((_actions_github__WEBPACK_IMPORTED_MODULE_1___default()), null, "\t"));
 } catch (error) {

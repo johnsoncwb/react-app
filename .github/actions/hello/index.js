@@ -6,7 +6,7 @@ try {
   console.log(`Hello ${name}`);
 
   const time = new Date();
-  core.setOutput(JSON.stringify(time.toTimeString()));
+  core.setOutput("time", JSON.stringify(time.toTimeString()));
 
   console.log(JSON.stringify(github, null, "\t"));
 } catch (error) {
