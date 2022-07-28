@@ -12256,15 +12256,15 @@ __nccwpck_require__.r(__webpack_exports__);
 
 
 try {
-  const name = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput("who-to-greet");
+  const name = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("who-to-greet");
   console.log(`Hello ${name}`);
 
   const time = new Date();
-  _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setOutput("time", time.toTimeString());
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("time", time.toTimeString());
 
-  console.log(JSON.stringify((_actions_github__WEBPACK_IMPORTED_MODULE_1___default()), null, "\t"));
+  console.log(JSON.stringify(_actions_github__WEBPACK_IMPORTED_MODULE_1__, null, "\t"));
 } catch (error) {
-  console.log(error.message);
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
 }
 
 })();

@@ -1,5 +1,5 @@
-import core from "@actions/core";
-import github from "@actions/github";
+import * as core from "@actions/core";
+import * as github from "@actions/github";
 
 try {
   const name = core.getInput("who-to-greet");
@@ -10,5 +10,5 @@ try {
 
   console.log(JSON.stringify(github, null, "\t"));
 } catch (error) {
-  console.log(error.message);
+  core.setFailed(error.message);
 }
